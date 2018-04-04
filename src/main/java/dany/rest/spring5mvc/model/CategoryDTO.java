@@ -1,4 +1,4 @@
-package api.model;
+package dany.rest.spring5mvc.model;
 
 /**
  * Created by bautisj on 4/3/2018.

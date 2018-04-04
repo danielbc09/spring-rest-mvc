@@ -1,6 +1,6 @@
-package repository;
+package dany.rest.spring5mvc.repository;
 
-import domain.Category;
+import dany.rest.spring5mvc.domain.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

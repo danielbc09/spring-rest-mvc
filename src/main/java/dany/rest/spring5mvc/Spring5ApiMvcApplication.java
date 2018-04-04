@@ -1,4 +1,4 @@
-package com.api.rest.spring5apimvc;
+package dany.rest.spring5mvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
