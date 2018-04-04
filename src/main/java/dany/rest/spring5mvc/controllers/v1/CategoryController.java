@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.springframework.http.HttpStatus.OK;
-
 /**
  * Created by bautisj on 4/4/2018.
  */

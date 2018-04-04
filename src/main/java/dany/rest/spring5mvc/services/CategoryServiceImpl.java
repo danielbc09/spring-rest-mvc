@@ -3,6 +3,7 @@ package dany.rest.spring5mvc.services;
 import dany.rest.spring5mvc.api.mapper.CategoryMapper;
 import dany.rest.spring5mvc.api.model.CategoryDTO;
 import dany.rest.spring5mvc.repository.CategoryRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Created by bautisj on 4/4/2018.
  */
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;
