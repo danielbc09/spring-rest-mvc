@@ -2,7 +2,6 @@ package dany.rest.spring5mvc.api.mapper;
 
 import dany.rest.spring5mvc.api.model.CustomerDTO;
 import dany.rest.spring5mvc.domain.Customer;
-import org.apache.catalina.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,13 +25,13 @@ public class CustomerMapperTest {
     //Given
         Customer customer  = new Customer();
         customer.setId(1l);
-        customer.setFirstName(FIRSTNAME);
-        customer.setLastName(LASTTNAME);
+        customer.setFirstname(FIRSTNAME);
+        customer.setLastname(LASTTNAME);
 
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
         assertEquals(Long.valueOf(ID), customerDTO.getId());
-        assertEquals(FIRSTNAME, customerDTO.getFirstName());
+        assertEquals(FIRSTNAME, customerDTO.getFirstname());
         assertEquals(LASTTNAME, customerDTO.getLastName());
 
     }

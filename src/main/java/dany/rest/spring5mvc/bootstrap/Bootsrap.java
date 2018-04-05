@@ -23,29 +23,13 @@ public class Bootsrap implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-       /***CUSTOMERS***/
-        Customer jhonDoe = new Customer();
-        jhonDoe.setFirstName("Jhon");
-        jhonDoe.setLastName("Doe");
 
-        Customer danyB = new Customer();
-        danyB.setFirstName("Dany");
-        danyB.setLastName("Boy");
+        loadCustomers();
+        loadCategories();
 
-        Customer laraC = new Customer();
-        laraC.setFirstName("Lara");
-        laraC.setLastName("Croft");
+    }
 
-        Customer chew = new Customer();
-        chew.setFirstName("Chew");
-        chew.setLastName("Baka");
-
-        customerRepository.save(jhonDoe);
-        customerRepository.save(danyB);
-        customerRepository.save(laraC);
-        customerRepository.save(chew);
-
-      /***CATEGORIES***/
+    private void loadCategories() {
         Category fruits = new Category();
         fruits.setName("Fruits");
 
@@ -63,7 +47,31 @@ public class Bootsrap implements CommandLineRunner {
         categoryRepository.save(nuts);
         categoryRepository.save(fresh);
 
-        System.out.println("**********************Data Loaded****************************"+ categoryRepository.count());
+        System.out.println("**********************Categories Loaded****************************"+ categoryRepository.count());
+    }
+
+    private void loadCustomers() {
+        Customer jhonDoe = new Customer();
+        jhonDoe.setFirstname("Jhon");
+        jhonDoe.setLastname("Doe");
+
+        Customer danyB = new Customer();
+        danyB.setFirstname("Dany");
+        danyB.setLastname("Boy");
+
+        Customer laraC = new Customer();
+        laraC.setFirstname("Lara");
+        laraC.setLastname("Croft");
+
+        Customer chew = new Customer();
+        chew.setFirstname("Chew");
+        chew.setLastname("Baka");
+
+        customerRepository.save(jhonDoe);
+        customerRepository.save(danyB);
+        customerRepository.save(laraC);
+        customerRepository.save(chew);
+        System.out.println("**********************Customers Loaded****************************"+ categoryRepository.count());
 
     }
 }

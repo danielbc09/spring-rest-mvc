@@ -55,15 +55,15 @@ public class CustomerServiceTest {
         //Given
         Customer jhon = new Customer();
         jhon.setId(ID);
-        jhon.setFirstName(FIRST_NAME);
-        jhon.setLastName(LAST_NAME);
+        jhon.setFirstname(FIRST_NAME);
+        jhon.setLastname(LAST_NAME);
         when(customerRepository.findByFirstName(anyString())).thenReturn(jhon);
 
         //When
         CustomerDTO customerDTO = customerService
                     .getCustomerByName(FIRST_NAME);
 
-        assertEquals(FIRST_NAME, customerDTO.getFirstName());
+        assertEquals(FIRST_NAME, customerDTO.getFirstname());
         assertEquals(LAST_NAME, customerDTO.getLastName());
         assertEquals(Long.valueOf(ID), customerDTO.getId());
 
