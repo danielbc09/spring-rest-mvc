@@ -2,6 +2,7 @@ package dany.rest.spring5mvc.services;
 
 import dany.rest.spring5mvc.api.mapper.CustomerMapper;
 import dany.rest.spring5mvc.api.model.CustomerDTO;
+import dany.rest.spring5mvc.domain.Customer;
 import dany.rest.spring5mvc.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomerUrl("api/v1/customer/" + customer.getId());
+                    customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
@@ -37,6 +38,19 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO getCustomerByName(String name) {
         return customerMapper
-                .customerToCustomerDTO(customerRepository.findByFirstName(name));
+                .customerToCustomerDTO(customerRepository.findByFirstname(name));
+    }
+
+    @Override
+    public CustomerDTO createCustomer(CustomerDTO customerDTO) {
+        Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+
+        Customer savedCustomer = customerRepository.save(customer);
+
+        CustomerDTO returnDto = customerMapper.customerToCustomerDTO(savedCustomer);
+
+        returnDto.setCustomerUrl("/api/v1/customer/"+ savedCustomer.getId());
+
+        return returnDto;
     }
 }

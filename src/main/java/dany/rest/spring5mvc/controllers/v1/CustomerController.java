@@ -6,15 +6,13 @@ import dany.rest.spring5mvc.services.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by bautisj on 4/5/2018.
  */
 @Controller
-@RequestMapping("/api/v1/customers/")
+@RequestMapping("/api/v1/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -29,10 +27,16 @@ public class CustomerController {
                 new CustomerListDTO(customerService.getAllCustomers()), HttpStatus.OK);
     }
 
-    @GetMapping("{name}")
+    @GetMapping("/{name}")
     public ResponseEntity<CustomerDTO> getCustomerByName(@PathVariable String name){
         return new ResponseEntity<CustomerDTO>(
                 customerService.getCustomerByName(name), HttpStatus.OK
         );
+    }
+
+    @PostMapping
+    public ResponseEntity<CustomerDTO> creteNewCustomer(@RequestBody CustomerDTO customerDTO) {
+        return new ResponseEntity<CustomerDTO>
+                (customerService.createCustomer(customerDTO), HttpStatus.CREATED);
     }
 }

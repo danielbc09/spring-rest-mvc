@@ -14,4 +14,6 @@ public interface CustomerService {
     List<CustomerDTO> getAllCustomers();
 
     CustomerDTO getCustomerByName(String name);
+
+    CustomerDTO createCustomer(CustomerDTO customerDTO);
 }
