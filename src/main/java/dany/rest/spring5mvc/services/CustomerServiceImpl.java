@@ -53,4 +53,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         return returnDto;
     }
+
+    @Override
+    public CustomerDTO getCustomerById(Long id) {
+        return customerRepository
+                .findById(id)
+                .map(customerMapper::customerToCustomerDTO)
+                .orElseThrow(RuntimeException::new);
+    }
 }

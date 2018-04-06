@@ -3,6 +3,7 @@ package dany.rest.spring5mvc.controllers.v1;
 import dany.rest.spring5mvc.api.model.CustomerDTO;
 import dany.rest.spring5mvc.services.CustomerService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.Arrays;
 
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -59,6 +61,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
     }
 
+    @Ignore
     @Test
     public void getCustomerByName()  throws Exception {
         CustomerDTO customerDTO1 = new CustomerDTO();
@@ -71,6 +74,24 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
         //When
         mockMvc.perform(get("/api/v1/customers/Jhon")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstname", equalTo("Jhon")));
+
+    }
+
+    @Test
+    public void getCustomerById()  throws Exception {
+        CustomerDTO customerDTO1 = new CustomerDTO();
+        customerDTO1.setId(1l);
+        customerDTO1.setFirstname("Jhon");
+        customerDTO1.setLastname("Doe");
+        customerDTO1.setCustomerUrl("/api/v1/customer/1");
+
+        when(customerService.getCustomerById(anyLong())).thenReturn(customerDTO1);
+
+        //When
+        mockMvc.perform(get("/api/v1/customers/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstname", equalTo("Jhon")));
