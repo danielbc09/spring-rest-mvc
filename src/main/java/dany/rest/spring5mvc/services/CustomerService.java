@@ -15,7 +15,9 @@ public interface CustomerService {
 
     CustomerDTO getCustomerByName(String name);
 
+    CustomerDTO getCustomerById(Long id);
+
     CustomerDTO createCustomer(CustomerDTO customerDTO);
 
-    CustomerDTO getCustomerById(Long id);
+    CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO);
 }
