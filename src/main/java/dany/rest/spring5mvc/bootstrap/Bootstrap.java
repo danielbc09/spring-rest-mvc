@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
  * Created by bautisj on 4/3/2018.
  */
 @Component
-public class Bootsrap implements CommandLineRunner {
+public class Bootstrap implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
     private CustomerRepository customerRepository;
 
-    public Bootsrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
         this.categoryRepository = categoryRepository;
         this.customerRepository = customerRepository;
     }
@@ -29,7 +29,7 @@ public class Bootsrap implements CommandLineRunner {
 
     }
 
-    private void loadCategories() {
+    public void loadCategories() {
         Category fruits = new Category();
         fruits.setName("Fruits");
 
@@ -50,7 +50,7 @@ public class Bootsrap implements CommandLineRunner {
         System.out.println("**********************Categories Loaded****************************"+ categoryRepository.count());
     }
 
-    private void loadCustomers() {
+    public void loadCustomers() {
         Customer jhonDoe = new Customer();
         jhonDoe.setFirstname("Jhon");
         jhonDoe.setLastname("Doe");
