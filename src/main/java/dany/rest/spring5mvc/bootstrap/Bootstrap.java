@@ -2,7 +2,9 @@ package dany.rest.spring5mvc.bootstrap;
 
 import dany.rest.spring5mvc.domain.Category;
 import dany.rest.spring5mvc.domain.Customer;
+import dany.rest.spring5mvc.domain.Vendor;
 import dany.rest.spring5mvc.repository.CustomerRepository;
+import dany.rest.spring5mvc.repository.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
 import dany.rest.spring5mvc.repository.CategoryRepository;
 import org.springframework.stereotype.Component;
@@ -15,10 +17,12 @@ public class Bootstrap implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
     private CustomerRepository customerRepository;
+    private VendorRepository vendorRepository;
 
-    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository, VendorRepository vendorRepository) {
         this.categoryRepository = categoryRepository;
         this.customerRepository = customerRepository;
+        this.vendorRepository = vendorRepository;
     }
 
     @Override
@@ -26,6 +30,33 @@ public class Bootstrap implements CommandLineRunner {
 
         loadCustomers();
         loadCategories();
+        loadVendors();
+
+    }
+
+    private void loadVendors() {
+        Vendor vendor = new Vendor();
+        vendor.setName("Western Tasty Fruits Ltd.");
+
+        Vendor vendor2 = new Vendor();
+        vendor.setName("Exotic Fruits Company");
+
+        Vendor vendor3 = new Vendor();
+        vendor.setName("Home Fruits");
+
+        Vendor vendor4 = new Vendor();
+        vendor.setName("Fun Fresh Fruits Ltd.");
+
+        Vendor vendor5 = new Vendor();
+        vendor.setName("Nuts for Nuts Company");
+
+        vendorRepository.save(vendor);
+        vendorRepository.save(vendor2);
+        vendorRepository.save(vendor3);
+        vendorRepository.save(vendor4);
+        vendorRepository.save(vendor5);
+
+        System.out.println("**********************Vendors Loaded****************************"+ vendorRepository.count());
 
     }
 

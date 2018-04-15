@@ -6,6 +6,7 @@ import dany.rest.spring5mvc.domain.Customer;
 import dany.rest.spring5mvc.repository.CategoryRepository;
 import dany.rest.spring5mvc.repository.CustomerRepository;
 import dany.rest.spring5mvc.bootstrap.Bootstrap;
+import dany.rest.spring5mvc.repository.VendorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,8 @@ public class CustomerServiceImplIT {
     CustomerRepository customerRepository;
     @Autowired
     CategoryRepository categoryRepository;
-
+    @Autowired
+    VendorRepository vendorRepository;
     CustomerService customerService;
 
 
@@ -41,7 +43,7 @@ public class CustomerServiceImplIT {
         System.out.println("Loading Customer Data");
         System.out.println(customerRepository.findAll().size());
 
-        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository);
+        Bootstrap bootstrap = new Bootstrap(categoryRepository, customerRepository, vendorRepository);
         bootstrap.run();
 
         customerService = new CustomerServiceImpl(CustomerMapper.INSTANCE, customerRepository);
