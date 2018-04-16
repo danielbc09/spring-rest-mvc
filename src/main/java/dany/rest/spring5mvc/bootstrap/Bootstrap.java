@@ -39,16 +39,16 @@ public class Bootstrap implements CommandLineRunner {
         vendor.setName("Western Tasty Fruits Ltd.");
 
         Vendor vendor2 = new Vendor();
-        vendor.setName("Exotic Fruits Company");
+        vendor2.setName("Exotic Fruits Company");
 
         Vendor vendor3 = new Vendor();
-        vendor.setName("Home Fruits");
+        vendor3.setName("Home Fruits");
 
         Vendor vendor4 = new Vendor();
-        vendor.setName("Fun Fresh Fruits Ltd.");
+        vendor4.setName("Fun Fresh Fruits Ltd.");
 
         Vendor vendor5 = new Vendor();
-        vendor.setName("Nuts for Nuts Company");
+        vendor5.setName("Nuts for Nuts Company");
 
         vendorRepository.save(vendor);
         vendorRepository.save(vendor2);
