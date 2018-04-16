@@ -65,7 +65,7 @@ public class CustomerServiceTest {
 
         //When
         CustomerDTO customerDTO = customerService
-                    .getCustomerByName(FIRST_NAME);
+                .getCustomerByName(FIRST_NAME);
 
         assertEquals(FIRST_NAME, customerDTO.getFirstname());
         assertEquals(LAST_NAME, customerDTO.getLastname());
@@ -74,7 +74,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void createCustomer(){
+    public void createCustomer() {
         //Given
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstname(FIRST_NAME);
@@ -94,7 +94,6 @@ public class CustomerServiceTest {
         assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
         assertEquals("/api/v1/customer/1", savedDto.getCustomerUrl());
     }
-
 
     @Test
     public void saveCustomerByDTO() throws Exception {
@@ -124,4 +123,5 @@ public class CustomerServiceTest {
         customerService.deleteCustomerByID(id);
         verify(customerRepository, times(1)).deleteById(anyLong());
     }
+
 }

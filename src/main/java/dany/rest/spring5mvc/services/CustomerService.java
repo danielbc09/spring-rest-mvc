@@ -15,13 +15,14 @@ public interface CustomerService {
 
     CustomerDTO getCustomerByName(String name);
 
-    CustomerDTO createCustomer(CustomerDTO customerDTO);
-
     CustomerDTO getCustomerById(Long id);
 
-    CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO);
+    CustomerDTO createCustomer(CustomerDTO customerDTO);ss
 
     CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO);
 
     void deleteCustomerByID(Long id);
+
+    CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO);
+
 }

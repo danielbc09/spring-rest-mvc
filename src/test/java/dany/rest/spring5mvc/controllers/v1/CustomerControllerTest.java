@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.net.URI;
 import java.util.Arrays;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -119,8 +120,8 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         when(customerService.createCustomer(customer)).thenReturn(returnDTO);
 
         mockMvc.perform(post(CustomerController.BASE_URL)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(customer)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname", equalTo("Fred")))
                 .andExpect(jsonPath("$.customer_url", equalTo(CustomerController.BASE_URL + "/1")));
@@ -169,7 +170,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
                 //.andExpect(jsonPath("$.firstname", equalTo("Fred")))
-               // .andExpect(jsonPath("$.lastname", equalTo("Flintstone")))
+                // .andExpect(jsonPath("$.lastname", equalTo("Flintstone")))
                 //.andExpect(jsonPath("$.customer_url", equalTo("/api/v1/customers/1")))
                 .andReturn();
     }
@@ -192,4 +193,5 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
+
 }
