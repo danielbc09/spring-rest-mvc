@@ -15,7 +15,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -93,7 +96,8 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void saveCustomerByDTOTest() throws  Exception {
+    public void saveCustomerByDTO() throws Exception {
+
         //given
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstname("Jim");
@@ -112,4 +116,12 @@ public class CustomerServiceTest {
         assertEquals(customerDTO.getFirstname(), savedDto.getFirstname());
         assertEquals("/api/v1/customer/1", savedDto.getCustomerUrl());
     }
+
+    @Test
+    public void deleteCustomerById() throws  Exception {
+        Long id = 1L;
+        customerService.deleteCustomerByID(id);
+        verify(customerRepository, times(1)).deleteById(anyLong());
+    }
+
 }

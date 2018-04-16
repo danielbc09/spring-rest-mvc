@@ -2,7 +2,9 @@ package dany.rest.spring5mvc.bootstrap;
 
 import dany.rest.spring5mvc.domain.Category;
 import dany.rest.spring5mvc.domain.Customer;
+import dany.rest.spring5mvc.domain.Vendor;
 import dany.rest.spring5mvc.repository.CustomerRepository;
+import dany.rest.spring5mvc.repository.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
 import dany.rest.spring5mvc.repository.CategoryRepository;
 import org.springframework.stereotype.Component;
@@ -11,14 +13,16 @@ import org.springframework.stereotype.Component;
  * Created by bautisj on 4/3/2018.
  */
 @Component
-public class Bootsrap implements CommandLineRunner {
+public class Bootstrap implements CommandLineRunner {
 
     private CategoryRepository categoryRepository;
     private CustomerRepository customerRepository;
+    private VendorRepository vendorRepository;
 
-    public Bootsrap(CategoryRepository categoryRepository, CustomerRepository customerRepository) {
+    public Bootstrap(CategoryRepository categoryRepository, CustomerRepository customerRepository, VendorRepository vendorRepository) {
         this.categoryRepository = categoryRepository;
         this.customerRepository = customerRepository;
+        this.vendorRepository = vendorRepository;
     }
 
     @Override
@@ -26,10 +30,37 @@ public class Bootsrap implements CommandLineRunner {
 
         loadCustomers();
         loadCategories();
+        loadVendors();
 
     }
 
-    private void loadCategories() {
+    private void loadVendors() {
+        Vendor vendor = new Vendor();
+        vendor.setName("Western Tasty Fruits Ltd.");
+
+        Vendor vendor2 = new Vendor();
+        vendor2.setName("Exotic Fruits Company");
+
+        Vendor vendor3 = new Vendor();
+        vendor3.setName("Home Fruits");
+
+        Vendor vendor4 = new Vendor();
+        vendor4.setName("Fun Fresh Fruits Ltd.");
+
+        Vendor vendor5 = new Vendor();
+        vendor5.setName("Nuts for Nuts Company");
+
+        vendorRepository.save(vendor);
+        vendorRepository.save(vendor2);
+        vendorRepository.save(vendor3);
+        vendorRepository.save(vendor4);
+        vendorRepository.save(vendor5);
+
+        System.out.println("**********************Vendors Loaded****************************"+ vendorRepository.count());
+
+    }
+
+    public void loadCategories() {
         Category fruits = new Category();
         fruits.setName("Fruits");
 
@@ -50,7 +81,7 @@ public class Bootsrap implements CommandLineRunner {
         System.out.println("**********************Categories Loaded****************************"+ categoryRepository.count());
     }
 
-    private void loadCustomers() {
+    public void loadCustomers() {
         Customer jhonDoe = new Customer();
         jhonDoe.setFirstname("Jhon");
         jhonDoe.setLastname("Doe");

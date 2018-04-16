@@ -45,27 +45,44 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO getCustomerById(Long id) {
         return customerRepository
                 .findById(id)
-                .map(customer -> {
-                    CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomerUrl("/api/v1/customer/" + customer.getId());
-                    return customerDTO;
-                })
-                .orElseThrow(RuntimeException::new);
+                .map(customerMapper::customerToCustomerDTO)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
     public CustomerDTO createCustomer(CustomerDTO customerDTO) {
-
         return saveAndReturnDTO(customerMapper.customerDtoToCustomer(customerDTO));
     }
 
     @Override
     public CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO) {
         Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
-
         customer.setId(id);
-
         return saveAndReturnDTO(customer);
+    }
+
+
+    @Override
+    public CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO) {
+        return customerRepository.findById(id).map(
+                customer -> {
+                    if(customerDTO.getFirstname() != null){
+                        customer.setFirstname(customerDTO.getFirstname());
+                    }
+                    if (customerDTO.getLastname() != null){
+                        customer.setLastname(customerDTO.getLastname());
+                    }
+
+                    CustomerDTO returnDto = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
+                    returnDto.setCustomerUrl("/api/v1/customer/" + id);
+                    return returnDto;
+                }
+        ).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public void deleteCustomerByID(Long id) {
+        customerRepository.deleteById(id);
     }
 
     private CustomerDTO saveAndReturnDTO(Customer customer) {
