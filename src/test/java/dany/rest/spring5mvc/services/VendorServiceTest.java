@@ -18,7 +18,9 @@ import static org.mockito.Mockito.when;
 
 public class VendorServiceTest {
 
-    private static final  String VENDOR_NAME = "Exotic Fruits Company";
+    private static final String VENDOR_NAME = "Exotic Fruits Company";
+    private static final Long VENDOR_ID = 1L;
+
     VendorService vendorService;
 
     @Mock
@@ -43,4 +45,16 @@ public class VendorServiceTest {
         assertEquals(3, vendorDTOS.size());
     }
 
+    @Test
+    public void getVendorById() throws Exception {
+        //Given
+        Vendor vendor = new Vendor();
+        vendor.setId(VENDOR_ID);
+        vendor.setName(VENDOR_NAME);
+        when(vendorRepository.findById(VENDOR_ID)).thenReturn(java.util.Optional.ofNullable(vendor));
+        //When
+        VendorDTO vendorDTO = vendorService.getVendorById(VENDOR_ID);
+        //Then
+        assertEquals("Exotic Fruits Company", vendorDTO.getName());
+    }
 }

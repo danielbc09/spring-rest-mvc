@@ -5,7 +5,6 @@ import dany.rest.spring5mvc.domain.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.context.annotation.Bean;
 
 /**
  * Created by bautisj on 4/4/2018.

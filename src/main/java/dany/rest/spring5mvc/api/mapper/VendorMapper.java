@@ -1,8 +1,6 @@
 package dany.rest.spring5mvc.api.mapper;
 
-import dany.rest.spring5mvc.api.model.CustomerDTO;
 import dany.rest.spring5mvc.api.model.VendorDTO;
-import dany.rest.spring5mvc.domain.Customer;
 import dany.rest.spring5mvc.domain.Vendor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

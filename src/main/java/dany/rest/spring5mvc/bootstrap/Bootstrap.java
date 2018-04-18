@@ -3,10 +3,10 @@ package dany.rest.spring5mvc.bootstrap;
 import dany.rest.spring5mvc.domain.Category;
 import dany.rest.spring5mvc.domain.Customer;
 import dany.rest.spring5mvc.domain.Vendor;
+import dany.rest.spring5mvc.repository.CategoryRepository;
 import dany.rest.spring5mvc.repository.CustomerRepository;
 import dany.rest.spring5mvc.repository.VendorRepository;
 import org.springframework.boot.CommandLineRunner;
-import dany.rest.spring5mvc.repository.CategoryRepository;
 import org.springframework.stereotype.Component;
 
 /**

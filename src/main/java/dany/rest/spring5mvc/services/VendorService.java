@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface VendorService {
     List<VendorDTO> getAllVendors();
+
+    VendorDTO getVendorById(Long id);
 }

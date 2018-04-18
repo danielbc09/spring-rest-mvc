@@ -2,6 +2,7 @@ package dany.rest.spring5mvc.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import java.util.List;
 
 /**

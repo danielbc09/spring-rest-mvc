@@ -1,12 +1,10 @@
 package dany.rest.spring5mvc.controllers.v1;
 
+import dany.rest.spring5mvc.api.model.VendorDTO;
 import dany.rest.spring5mvc.api.model.VendorListDTO;
 import dany.rest.spring5mvc.services.VendorService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(VendorController.BASE_URL)
@@ -23,5 +21,11 @@ public class VendorController {
     @ResponseStatus(HttpStatus.OK)
     public VendorListDTO getAllVendors(){
         return new VendorListDTO(vendorService.getAllVendors());
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public VendorDTO getVendorById(@PathVariable Long id){
+        return vendorService.getVendorById(id);
     }
 }
