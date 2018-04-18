@@ -2,6 +2,8 @@ package dany.rest.spring5mvc.services;
 
 import dany.rest.spring5mvc.api.mapper.VendorMapper;
 import dany.rest.spring5mvc.api.model.VendorDTO;
+import dany.rest.spring5mvc.api.model.VendorListDTO;
+import dany.rest.spring5mvc.controllers.v1.VendorController;
 import dany.rest.spring5mvc.repository.VendorRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +22,18 @@ public class VendorServiceImpl implements VendorService{
     }
 
     @Override
-    public List<VendorDTO> getAllVendors() {
-        return vendorRepository.findAll()
+    public VendorListDTO getAllVendors() {
+         List<VendorDTO> vendorDTOS = vendorRepository.findAll()
                 .stream()
                 .map(vendor -> {
                     VendorDTO vendorDTO = vendorMapper.vendorToVendorDTO(vendor);
                     vendorDTO.setVendorUrl("/api/vendors/" + vendor.getId());
+                    vendorDTO.setVendorUrl(getVendorUrl(vendor.getId()));
                     return vendorDTO;
                 })
                 .collect(Collectors.toList());
+
+         return new VendorListDTO(vendorDTOS);
     }
 
     @Override
@@ -36,6 +41,14 @@ public class VendorServiceImpl implements VendorService{
         return vendorRepository
                 .findById(id)
                 .map(vendorMapper::vendorToVendorDTO)
+                .map(vendorDto -> {
+                    vendorDto.setVendorUrl(getVendorUrl(id));
+                    return vendorDto;
+                })
                 .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    private String getVendorUrl(Long id) {
+        return VendorController.BASE_URL + "/" +id;
     }
 }
