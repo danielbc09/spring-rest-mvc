@@ -28,15 +28,12 @@ public class VendorMapperTest {
         vendor.setName(NAME);
 
         VendorDTO vendorDTO = vendorMapper.vendorToVendorDTO(vendor);
-
-        assertEquals(Long.valueOf(ID), vendorDTO.getId());
         assertEquals(NAME, vendorDTO.getName());
     }
 
     @Test
     public void vendorDtoToVendor() throws Exception {
         VendorDTO vendorDTO = new VendorDTO();
-        vendorDTO.setId(1l);
         vendorDTO.setName(NAME);
 
         Vendor vendor = vendorMapper.vendorDtoToVendor(vendorDTO);
