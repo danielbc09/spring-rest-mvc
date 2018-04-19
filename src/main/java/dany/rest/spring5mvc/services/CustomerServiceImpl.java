@@ -57,6 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO) {
         Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
+     //   customerRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         customer.setId(id);
         return saveAndReturnDTO(customer);
     }
