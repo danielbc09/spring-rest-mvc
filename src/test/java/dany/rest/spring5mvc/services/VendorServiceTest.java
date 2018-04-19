@@ -135,6 +135,14 @@ public class VendorServiceTest {
         assertThat(savedVendorDTO.getVendorUrl(), containsString("1"));
     }
 
+    @Test
+    public void deleteVendorById()throws Exception {
+        //when
+        vendorService.deleteVendor(1L);
+        //then
+        then(vendorRepository).should().deleteById(anyLong());
+    }
+
     private Vendor getVendor1() {
         Vendor vendor = new Vendor();
         vendor.setName(VENDOR1_NAME);

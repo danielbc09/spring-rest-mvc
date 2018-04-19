@@ -38,7 +38,6 @@ public class VendorMapperTest {
 
         Vendor vendor = vendorMapper.vendorDtoToVendor(vendorDTO);
 
-        assertEquals(Long.valueOf(ID), vendor.getId());
         assertEquals(NAME, vendor.getName());
     }
 

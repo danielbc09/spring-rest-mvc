@@ -74,6 +74,11 @@ public class VendorServiceImpl implements VendorService{
                 ).orElseThrow(ResourceNotFoundException::new);
     }
 
+    @Override
+    public void deleteVendor(Long id) {
+        vendorRepository.deleteById(id);
+    }
+
     private VendorDTO savedAndReturnDTO(Vendor vendor) {
         Vendor savedVendor = vendorRepository.save(vendor);
         VendorDTO vendorDTO = vendorMapper.vendorToVendorDTO(savedVendor);
