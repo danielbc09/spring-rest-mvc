@@ -40,4 +40,10 @@ public class VendorController {
     public VendorDTO updateVendor(@PathVariable Long id, @RequestBody VendorDTO vendorDTO) {
         return vendorService.updateVendorByDTO(id, vendorDTO);
     }
+
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public VendorDTO patchVendor(@PathVariable Long id, @RequestBody VendorDTO vendorDTO){
+        return vendorService.patchVendor(id, vendorDTO);
+    }
 }

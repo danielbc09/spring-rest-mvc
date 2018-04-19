@@ -113,6 +113,28 @@ public class VendorServiceTest {
         assertThat(savedVendorDTO.getVendorUrl(), containsString("1"));
     }
 
+    @Test
+    public void patchVendor() throws Exception {
+        //given
+        VendorDTO vendorDTO = new VendorDTO();
+        vendorDTO.setName(VENDOR1_NAME);
+
+        Vendor vendor = getVendor1();
+
+        given(vendorRepository.findById(anyLong())).willReturn(Optional.of(vendor));
+        given(vendorRepository.save(any(Vendor.class))).willReturn(vendor);
+
+        //when
+
+        VendorDTO savedVendorDTO = vendorService.patchVendor(VENDOR1_ID, vendorDTO);
+
+        //then
+        // 'should' defaults to times = 1
+        then(vendorRepository).should().save(any(Vendor.class));
+        then(vendorRepository).should(times(1)).findById(anyLong());
+        assertThat(savedVendorDTO.getVendorUrl(), containsString("1"));
+    }
+
     private Vendor getVendor1() {
         Vendor vendor = new Vendor();
         vendor.setName(VENDOR1_NAME);
