@@ -4,6 +4,7 @@ import dany.rest.spring5mvc.api.mapper.VendorMapper;
 import dany.rest.spring5mvc.api.model.VendorDTO;
 import dany.rest.spring5mvc.api.model.VendorListDTO;
 import dany.rest.spring5mvc.controllers.v1.VendorController;
+import dany.rest.spring5mvc.domain.Vendor;
 import dany.rest.spring5mvc.repository.VendorRepository;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,18 @@ public class VendorServiceImpl implements VendorService{
                     return vendorDto;
                 })
                 .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public VendorDTO createNewVendor(VendorDTO vendorDTO) {
+        return savedAndReturnDTO(vendorMapper.vendorDtoToVendor(vendorDTO));
+    }
+
+    private VendorDTO savedAndReturnDTO(Vendor vendor) {
+        Vendor savedVendor = vendorRepository.save(vendor);
+        VendorDTO vendorDTO = vendorMapper.vendorToVendorDTO(savedVendor);
+        vendorDTO.setVendorUrl(getVendorUrl(savedVendor.getId()));
+        return vendorDTO;
     }
 
     private String getVendorUrl(Long id) {

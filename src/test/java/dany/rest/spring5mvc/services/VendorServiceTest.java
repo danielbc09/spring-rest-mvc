@@ -14,9 +14,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -65,6 +67,35 @@ public class VendorServiceTest {
         //Then
         then(vendorRepository).should(times(1)).findById(anyLong());
         assertThat(vendorDTO.getName(), is(equalTo(VENDOR1_NAME)));
+    }
+
+    @Test(expected = ResourceNotFoundException.class)
+    public void getVendorByIdNotFound() throws Exception {
+        //given
+        //mockito BBD syntax since mockito 1.10.0
+        given(vendorRepository.findById(anyLong())).willReturn(Optional.empty());
+
+        //when
+        VendorDTO vendorDTO = vendorService.getVendorById(1L);
+
+        //then
+        then(vendorRepository).should(times(1))
+                .findById(anyLong());
+    }
+
+    @Test
+    public void createNewVendor() throws Exception {
+        //Given
+        VendorDTO vendorDTO = new VendorDTO();
+        vendorDTO.setName(VENDOR1_NAME);
+        Vendor vendor = getVendor1();
+        given(vendorRepository.save(any(Vendor.class))).willReturn(vendor);
+        //When
+        VendorDTO savedVedorDTO = vendorService.createNewVendor(vendorDTO);
+        //Then
+        then(vendorRepository).should().save(any(Vendor.class));
+        assertThat(savedVedorDTO.getVendorUrl(), containsString("1"));
+
     }
 
 
