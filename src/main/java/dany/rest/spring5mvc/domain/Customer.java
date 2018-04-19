@@ -1,5 +1,6 @@
 package dany.rest.spring5mvc.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;

@@ -3,12 +3,15 @@ package dany.rest.spring5mvc.controllers.v1;
 import dany.rest.spring5mvc.api.model.CustomerDTO;
 import dany.rest.spring5mvc.api.model.CustomerListDTO;
 import dany.rest.spring5mvc.services.CustomerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by bautisj on 4/5/2018.
  */
+@Api(description = "This is my Customer Controller")
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
@@ -21,6 +24,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @ApiOperation(value = "This will get a list of customers.", notes = "Some notes of this API")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDTO getAllCategories() {
