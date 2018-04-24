@@ -1,6 +1,6 @@
 package dany.rest.spring5mvc.api.mapper;
 
-import dany.rest.spring5mvc.api.model.CustomerDTO;
+import com.springframework.model.CustomerDTO;
 import dany.rest.spring5mvc.domain.Customer;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,13 +24,11 @@ public class CustomerMapperTest {
     public void customerToCustomerDTO() throws Exception {
     //Given
         Customer customer  = new Customer();
-        customer.setId(1l);
         customer.setFirstname(FIRSTNAME);
         customer.setLastname(LASTTNAME);
 
         CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
 
-        assertEquals(Long.valueOf(ID), customerDTO.getId());
         assertEquals(FIRSTNAME, customerDTO.getFirstname());
         assertEquals(LASTTNAME, customerDTO.getLastname());
 
@@ -39,13 +37,10 @@ public class CustomerMapperTest {
     @Test
     public void customerDtoToCustomer() throws  Exception {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setId(1L);
         customerDTO.setFirstname(FIRSTNAME);
         customerDTO.setLastname(LASTTNAME);
 
         Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
-
-        assertEquals(Long.valueOf(ID), customerDTO.getId());
         assertEquals(FIRSTNAME, customerDTO.getFirstname());
         assertEquals(LASTTNAME, customerDTO.getLastname());
 

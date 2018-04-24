@@ -1,7 +1,8 @@
 package dany.rest.spring5mvc.controllers.v1;
 
-import dany.rest.spring5mvc.api.model.CustomerDTO;
-import dany.rest.spring5mvc.api.model.CustomerListDTO;
+
+import com.springframework.model.CustomerDTO;
+import com.springframework.model.CustomerListDTO;
 import dany.rest.spring5mvc.services.CustomerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,16 +29,11 @@ public class CustomerController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDTO getAllCategories() {
-        return new CustomerListDTO(customerService.getAllCustomers());
+        CustomerListDTO customerListDTO = new CustomerListDTO();
+        customerListDTO.getCustomers().addAll(customerService.getAllCustomers());
+        return customerListDTO;
     }
-/*
-    @GetMapping("/{name}")
-    public ResponseEntity<CustomerDTO> getCustomerByName(@PathVariable String name){
-        return new ResponseEntity<CustomerDTO>(
-                customerService.getCustomerByName(name), HttpStatus.OK
-        );
-    }
-*/
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDTO getCustomerById(@PathVariable Long id){

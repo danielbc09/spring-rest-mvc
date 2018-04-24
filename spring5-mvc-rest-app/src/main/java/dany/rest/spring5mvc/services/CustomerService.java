@@ -1,6 +1,7 @@
 package dany.rest.spring5mvc.services;
 
-import dany.rest.spring5mvc.api.model.CustomerDTO;
+
+import com.springframework.model.CustomerDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -102,7 +102,7 @@ public class Bootstrap implements CommandLineRunner {
         customerRepository.save(danyB);
         customerRepository.save(laraC);
         customerRepository.save(chew);
-        System.out.println("**********************Customers Loaded****************************"+ categoryRepository.count());
+        System.out.println("**********************Customers Loaded****************************"+ customerRepository.count());
 
     }
 }

@@ -1,9 +1,8 @@
 package dany.rest.spring5mvc.api.mapper;
 
-import dany.rest.spring5mvc.api.model.CustomerDTO;
+import com.springframework.model.CustomerDTO;
 import dany.rest.spring5mvc.domain.Customer;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -14,7 +13,6 @@ public interface CustomerMapper {
 
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
-    @Mapping(source="id", target= "id")
     CustomerDTO customerToCustomerDTO(Customer customer);
 
     Customer customerDtoToCustomer(CustomerDTO customerDTO);

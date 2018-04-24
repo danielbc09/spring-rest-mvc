@@ -1,8 +1,8 @@
 package dany.rest.spring5mvc.services;
 
 
+import com.springframework.model.CustomerDTO;
 import dany.rest.spring5mvc.api.mapper.CustomerMapper;
-import dany.rest.spring5mvc.api.model.CustomerDTO;
 import dany.rest.spring5mvc.domain.Customer;
 import dany.rest.spring5mvc.repository.CustomerRepository;
 import org.junit.Before;
@@ -69,8 +69,6 @@ public class CustomerServiceTest {
 
         assertEquals(FIRST_NAME, customerDTO.getFirstname());
         assertEquals(LAST_NAME, customerDTO.getLastname());
-        assertEquals(Long.valueOf(ID), customerDTO.getId());
-
     }
 
     @Test
