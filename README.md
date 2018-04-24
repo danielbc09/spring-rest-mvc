@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/danielbc09/spring-rest-mvc.svg?style=svg)](https://circleci.com/gh/danielbc09/spring-rest-mvc)
+[![CircleCI](https://circleci.com/gh/danielbc09/spring-rest-mvc/tree/content-negotiation.svg?style=svg)](https://circleci.com/gh/danielbc09/spring-rest-mvc/tree/content-negotiation)
 
 # Spring Web Framerwork
 
